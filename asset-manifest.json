@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/land-of-nightmares/static/css/main.c51bac2a.chunk.css",
+    "main.js": "/land-of-nightmares/static/js/main.6c720a50.chunk.js",
+    "main.js.map": "/land-of-nightmares/static/js/main.6c720a50.chunk.js.map",
+    "runtime-main.js": "/land-of-nightmares/static/js/runtime-main.77da1503.js",
+    "runtime-main.js.map": "/land-of-nightmares/static/js/runtime-main.77da1503.js.map",
+    "static/js/2.d744fc49.chunk.js": "/land-of-nightmares/static/js/2.d744fc49.chunk.js",
+    "static/js/2.d744fc49.chunk.js.map": "/land-of-nightmares/static/js/2.d744fc49.chunk.js.map",
+    "index.html": "/land-of-nightmares/index.html",
+    "precache-manifest.0929bfcd9bd8fd19a8507d49d5217693.js": "/land-of-nightmares/precache-manifest.0929bfcd9bd8fd19a8507d49d5217693.js",
+    "service-worker.js": "/land-of-nightmares/service-worker.js",
+    "static/css/main.c51bac2a.chunk.css.map": "/land-of-nightmares/static/css/main.c51bac2a.chunk.css.map",
+    "static/js/2.d744fc49.chunk.js.LICENSE": "/land-of-nightmares/static/js/2.d744fc49.chunk.js.LICENSE",
+    "static/media/app.mp3": "/land-of-nightmares/static/media/app.77594075.mp3",
+    "static/media/index.css": "/land-of-nightmares/static/media/rebucked.42004ee2.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.77da1503.js",
+    "static/js/2.d744fc49.chunk.js",
+    "static/css/main.c51bac2a.chunk.css",
+    "static/js/main.6c720a50.chunk.js"
+  ]
+}
