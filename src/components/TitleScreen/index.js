@@ -162,7 +162,7 @@ function TitleScreen({ allowAudio, currentLocation, dispatch, settings }) {
               <IconButton
                 className={classes.action}
                 component="a"
-                href="https://github.com/WaSa42/react-story-rich"
+                href="https://github.com/WaSa42/land-of-nightmares"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t(`${NAME}.sources`)}

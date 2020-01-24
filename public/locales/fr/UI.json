@@ -16,7 +16,7 @@
     "journal": "Journal",
     "menu": "Menu"
   },
-  "ProjectName": "My Super Project",
+  "ProjectName": "Land of Nightmares",
   "Settings": {
     "title": "Paramètres",
     "subheader": "Changez-les à tout moment sans affecter le cours du jeu",
@@ -76,7 +76,7 @@
     "goDown": "Aller en bas"
   },
   "TitleScreen": {
-    "subheader": "Create flexible narrative games with javascript basics.",
+    "subheader": "Une aventure narrative à travers le registre dark fantasy",
     "play": "Nouvelle partie",
     "keepPlaying": "Continuer",
     "settings": "Modifier les paramètres",

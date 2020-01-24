@@ -12,49 +12,69 @@ const Intro = ['Intro', [
 
   `Saurez-vous saisir les opportunités tout en préservant votre nature ?
   Parviendrez-vous à protéger les personnes qui vous sont chères ?
-  Assumerez-vous les choix que vous allez faire ?`,
+  Assumerez-vous les choix que vous allez prendre ?`,
 
-  `Faites-le sagement, naturellement, égoîstement ou peu importe,
+  `Prenez-les sagement, naturellement, égoîstement ou peu importe,
    car rien n'est aussi simple qu'il n'en ait l'air
-   et les conséquences de vos actions vous mèneront sur bien des chemins.`,
+   et les conséquences de vos actions répondront à leur propre mystère.`,
 
   {
     component: ButtonElement,
-    children: 'My super project',
+    children: 'Land of Nightmares',
     fontFamily: 'Rebucked',
     fontSize: 'xl',
     color: 'primary',
     onTap: ({ goForward }) => goForward(),
   },
 
-  `Ici débute donc votre histoire.`,
+  `Terminons les récits du passé, les Hommes et leur empire,
+  les rêves des explorateurs qui jadis visitèrent ce lieu sans revenir.`,
 
-  `Je vous le confirme, ce vieux temple est votre prison depuis une éternité.
-  Vous le savez au fond d'une jungle, dense et magique.`,
-
-  `Il est votre tombeau même ! Celui de votre ancienne vie, que vous avez volontairement oublié.
-  Mais les traces demeures toujours. Ce sont les première qui se font sentir parmi tout ce qui vous est inné.`,
-
-  `Vous entendez le craquement de la pierre qui se dérobe devant vous.
-  Une lumière vient alors intensément vous éblouir et vous sortir définitivement de ce long sommeil.
-  Vous la sentez aussi sur votre coprs, nu, comme si vous n'aviez jamais goûté à la vie.`,
-
-  `Mais c'est l'air qui vous agresse le plus. Il vous fouette,
-  comme s'il se vangeait de ne jamais avoir pu vouus toucher durant toutes ces années !
-  Ou ces millénaires, qui sait ?`,
-
-  `Vous n'avez aucune notion du temps, vos repères sont inexistants, tout est sombre ou néant.
-  Vous êtes étrangère à ce que vous vivez, mais vous le savez dangereux et cela vous rend nerveuse.`,
+  `Ce vieux temple que vous savez au fond d'une jungle, dense et magique est votre prison depuis une éternité.
+  Vous y demeurez actuellement inerte, sommeillant au coeur de la pierre et au pied d'un monde austère.`,
 
   {
-    children: `Il est temps d'agir, avant que la panique ne s'installe et vous fasse perdre vos moyens.
-    Hélas, démunié, vous n'avez guère de plans. Que voulez-vous faire ?`,
+    children: `Au coeur de votre tombeau même ! Celui de votre ancienne vie, que vous avez volontairement oublié.
+    Souhaitez vous vraiment vous réveiller ?`,
+    onTimeout: ({ goForward }) => goForward(1),
+    timeout: 20000,
+    actions: [
+      { children: `Se réveiller`, onClick: ({ goForward }) => goForward() },
+      { children: `Rester passive`, onClick: ({ goForward }) => goForward(1) },
+    ],
+  },
+
+  {
+    children: `Vous le souhaitez, mais vous ne controllez rien. C'est au final le hasard qui s'en chargera.`,
+    onTap: ({ goForward }) => goForward(1),
+  },
+
+  `Vous avez raison d'être passive, car même si la pensée vous effraie, vous ne controllez rien.`,
+
+  `Soudain, vous entendez le craquement du granite qui se dérobe devant vous.
+  Une lumière vient alors intensément vous éblouir et vous sortir définitivement de ce long repos.
+  Vous la sentez aussi sur votre coprs, nu, comme si vous n'aviez jamais goûté à la vie.`,
+
+  `L'air vous agresse, il vous fouette,
+  comme s'il se vangeait, lui aussi, de ne jamais avoir pu vous toucher, durant toutes ces années !
+  Ou ces millénaires, qui sait ?`,
+
+
+  {
+    children: `Vous n'avez aucune notion du temps, vos repères sont inexistants, tout est sombre ou néant.
+    Vous êtes étrangère à ce que vous vivez, mais vous le savez dangereux. Par quel hasard êtes vous ...
+    secourue ou attaquée ?`,
     hint: `Mettre en garde ce qui est venu vous chercher est sans doute la meilleure option,
     mais vous pourriez aussi essayer de puisez dans votre instinct primaire pour des résultats plus divers.`,
     actions: [
-      { children: `Mettre en garde` },
-      { children: `Puiser dans l'instinct` },
+      { children: `Mettre en garde`, onClick: ({ goForward }) => goForward() },
+      { children: `Puiser dans l'instinct`, onClick: ({ goForward }) => goForward() },
     ],
+  },
+
+  {
+    children: `Pas de suite pour l'instant. Merci les amis pour le beta test !`,
+    readOnly: true,
   },
 ]];
 

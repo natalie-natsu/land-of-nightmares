@@ -16,7 +16,7 @@
     "journal": "Journal",
     "menu": "Menu"
   },
-  "ProjectName": "My Super Project",
+  "ProjectName": "Land of Nightmares",
   "Settings": {
     "title": "Settings",
     "subheader": "Change them at any time without altering the game",
@@ -29,7 +29,7 @@
       "title": "In game settings",
       "subheader": "Concerns specific game behaviors",
       "resetHistory": {
-        "action": "Delete game-save",
+        "action": "Delete save",
         "text": "You can reset your save at any time, but you will lose your progress in the game. A save is specific to each machine.",
         "success": "Save deleted!"
       }
@@ -76,7 +76,7 @@
     "goDown": "Go down"
   },
   "TitleScreen": {
-    "subheader": "Create flexible narrative games with javascript basics.",
+    "subheader": "A narrative adventure through the dark fantasy theme",
     "play": "New game",
     "keepPlaying": "Continue",
     "settings": "Edit settings",
