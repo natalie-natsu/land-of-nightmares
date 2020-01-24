@@ -1,5 +1,6 @@
 {
   "name": "land-of-nightmares",
+  "homepage" : "http://wasa42.github.io/land-of-nightmares",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,7 +15,6 @@
     "clsx": "^1.0.4",
     "i18next": "^19.0.3",
     "i18next-browser-languagedetector": "^4.0.1",
-    "i18next-xhr-backend": "^3.2.2",
     "lodash": "^4.17.15",
     "notistack": "^0.9.7",
     "pizzicato": "^0.6.4",

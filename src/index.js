@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from 'serviceWorker';
 
 import i18n from 'i18next';
-import XHR from 'i18next-xhr-backend';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
@@ -19,12 +18,15 @@ import Store from 'store';
 
 import 'index.css';
 
+import resources from 'locales/resources';
+
 i18n
-  .use(XHR)
   .use(LanguageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
-    debug: true,
+    resources,
+
+    debug: process.env.NODE_ENV !== 'production',
     defaultNS: 'UI',
     whitelist: ['fr', 'en'],
     fallbackLng: 'en',
