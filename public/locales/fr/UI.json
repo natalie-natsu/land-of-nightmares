@@ -1,0 +1,89 @@
+{
+  "AllowAudio": {
+    "action": "Autoriser les sons",
+    "text": "Nous avons besoin que vous autorisiez les sons si vous voulez une meilleure expérience de jeu. Vous pouvez quand même jouer sans son si vous préférez."
+  },
+  "App": {
+    "nowPlaying": "Vous écoutez : {{name}}"
+  },
+  "Drawer": {
+    "titleScreen": "Écran d'acceuil",
+    "settings": "Paramètres"
+  },
+  "Navigation": {
+    "characters": "Compagnons",
+    "inventory": "Inventaire",
+    "journal": "Journal",
+    "menu": "Menu"
+  },
+  "ProjectName": "My Super Project",
+  "Settings": {
+    "title": "Paramètres",
+    "subheader": "Changez-les à tout moment sans affecter le cours du jeu",
+    "goBack": "Retour",
+    "text": {
+      "title": "Paramètres de texte",
+      "subheader": "Concerne la lecture et le theme"
+    },
+    "inGame": {
+      "title": "Paramètres de jeu",
+      "subheader": "Concerne tout ce qui affecte à la jouabilité",
+      "resetHistory": {
+        "action": "Supprimer sauvegarde",
+        "text": "Vous pouvez réinitialiser votre sauvegarde à tout moment, mais vous perdrez votre progression dans le jeu. Une sauvegarde est propre à chaque machine.",
+        "success": "Sauvegarde supprimée !"
+      }
+    },
+    "volume": {
+      "title": "Paramètres audio",
+      "subheader": "Concerne les volumes des différents type d'audio"
+    },
+    "Inputs": {
+      "Language": {
+        "label": "Langue",
+        "helperText": "Sélectionner votre langue (par défaut celle de votre navigateur)",
+        "en": "English",
+        "fr": "Français"
+      },
+      "Audio": {
+        "label": "Audio",
+        "helperText": "Activer ou désactiver tous les sons du jeu"
+      },
+      "DarkMode": {
+        "label": "Mode sombre",
+        "helperText": "Activer ou désactiver le mode sombre"
+      },
+      "Hints": {
+        "label": "Indices",
+        "helperText": "Activer ou désactiver les indices qui apparaissent lors de choix importants"
+      },
+      "TableTopMode": {
+        "label": "Mode jeu de rôle",
+        "helperText": "Activer ou désactiver le mode jeu de rôle qui affiche les résultats des « lancés de dés » et autres informations concernant la prise de décision."
+      },
+      "SoundVolume": {
+        "label": "Sons & environnement"
+      },
+      "MusicVolume": {
+        "label": "Musiques & ambiance"
+      },
+      "DialogVolume": {
+        "label": "Dialogues"
+      }
+    }
+  },
+  "ScrollToBottom": {
+    "goDown": "Aller en bas"
+  },
+  "TitleScreen": {
+    "subheader": "Create flexible narrative games with javascript basics.",
+    "play": "Nouvelle partie",
+    "keepPlaying": "Continuer",
+    "settings": "Modifier les paramètres",
+    "credits": "Voir les crédits",
+    "quit": "Quitter le jeu",
+    "mute": "Activer ou désactiver les sons",
+    "darkMode": "Activer ou désactiver le mode sombre",
+    "sources": "Voir le code source sur GitHub"
+  }
+}
