@@ -17,6 +17,9 @@
     "menu": "Menu"
   },
   "ProjectName": "Land of Nightmares",
+  "Roller": {
+    "youRolled": "Your rolled: {{roll}}"
+  },
   "Settings": {
     "title": "Settings",
     "subheader": "Change them at any time without altering the game",

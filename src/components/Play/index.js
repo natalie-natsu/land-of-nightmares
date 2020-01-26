@@ -58,9 +58,9 @@ function Play({ dispatch, history }) {
         <ScrollToBottom targetRef={ref} />
         <Container maxWidth="sm">
           <Story
+            defaultElement={DefaultElement}
             dispatch={dispatch}
             history={history}
-            nodeComponent={DefaultElement}
             tree={root}
           />
         </Container>

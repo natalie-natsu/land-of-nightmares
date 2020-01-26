@@ -6,10 +6,13 @@ import clsx from 'clsx';
 import noop from 'lodash/noop';
 import isEmpty from 'lodash/isEmpty';
 
+import { useTranslation } from 'react-i18next';
 import useEnabled from '@react-story-rich/core/hooks/useEnabled';
 import useFocus from '@react-story-rich/core/hooks/useFocus';
 import useTap from '@react-story-rich/core/hooks/useTap';
 import useTimeout from '@react-story-rich/core/hooks/useTimeout';
+import useActions from '@react-story-rich/ui/hooks/useActions';
+import useProgress from '@react-story-rich/ui/hooks/useProgress';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -19,9 +22,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Alert from '@material-ui/lab/Alert';
-
-import useActions from '@react-story-rich/ui/hooks/useActions';
-import useProgress from '@react-story-rich/ui/hooks/useProgress';
 
 import Progress from '@react-story-rich/ui/components/Progress';
 
@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DefaultElement = forwardRef((props, ref) => {
   const classes = useStyles();
+  const { t } = useTranslation('UI');
 
   const {
     actions,
@@ -66,13 +67,13 @@ const DefaultElement = forwardRef((props, ref) => {
 
   const elementRef = useRef(null);
   const [handleTap, handleKeyPress] = useTap(onTap, readOnly, injected);
-  const [hasActions, Actions] = useActions(actions, injected);
+  const [hasActions, Actions, actionRef] = useActions(actions, injected, { t });
   const hasProgress = useProgress(onTimeout, timeout, injected, hasActions);
 
   useImperativeHandle(ref, () => ({ focus: elementRef.current.focus }));
 
   useEnabled(onEnable, injected);
-  useFocus(elementRef, injected);
+  useFocus(hasActions ? actionRef : elementRef, injected);
   useTimeout(onTimeout, timeout, injected);
 
   const disabled = useMemo(() => (

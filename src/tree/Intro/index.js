@@ -1,4 +1,5 @@
-import ButtonElement from 'components/Element/Button';
+import ButtonElement from '@react-story-rich/ui/components/Element/Button';
+import DiceRollElement from 'components/Element/DiceRoll';
 
 const Intro = ['Intro', [
   `Aussi grande soit-elle, chaque civilisation est vouée à disparaître
@@ -19,7 +20,7 @@ const Intro = ['Intro', [
    et les conséquences de vos actions répondront à leur propre mystère.`,
 
   {
-    component: ButtonElement,
+    Element: ButtonElement,
     children: 'Land of Nightmares',
     fontFamily: 'Rebucked',
     fontSize: 'xl',
@@ -70,6 +71,11 @@ const Intro = ['Intro', [
       { children: `Mettre en garde`, onClick: ({ goForward }) => goForward() },
       { children: `Puiser dans l'instinct`, onClick: ({ goForward }) => goForward() },
     ],
+  },
+
+  {
+    Element: DiceRollElement,
+    query: '1d20',
   },
 
   {

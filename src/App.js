@@ -29,7 +29,7 @@ function App({ settings, allowAudio }) {
 
   useEffect(() => {
     if (pizzicatoState.isPlaying) {
-      enqueueSnackbar(t(`App.nowPlaying`, { name: musicName }));
+      enqueueSnackbar(t(`App.nowPlaying`, { name: musicName }), { variant: 'info' });
     }
   }, [enqueueSnackbar, pizzicatoState.isPlaying, t]);
 

@@ -31,5 +31,8 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".md"] }],
     'react/sort-prop-types': 'error',
+    // This rule is great for raising people awareness of what a key is and how it works.
+    'react/no-array-index-key': 'off',
+    'react/destructuring-assignment': 'off',
   },
 };
