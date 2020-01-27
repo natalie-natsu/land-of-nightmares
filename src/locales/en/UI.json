@@ -18,7 +18,23 @@
   },
   "ProjectName": "Land of Nightmares",
   "Roller": {
-    "youRolled": "Your rolled: {{roll}}"
+    "next": "Next",
+    "youRolled": "Your rolled: {{roll}}",
+    "flag": {
+      "success": "Success!",
+      "criticalSuccess": "Critical Success!",
+      "failure": "Failure!",
+      "criticalFailure": "Critical Failure!"
+    },
+    "skill": {
+      "INT": "Roll of intellect",
+      "STR": "Roll of strength",
+      "AGI": "Roll of agility",
+      "STI": "Roll of instinct",
+      "COMP": "Roll of composure",
+      "CHA": "Roll of charisma",
+      "FLU": "Roll of influence"
+    }
   },
   "Settings": {
     "title": "Settings",

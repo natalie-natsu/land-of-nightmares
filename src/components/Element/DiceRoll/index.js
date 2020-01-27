@@ -1,8 +1,9 @@
-import React, { forwardRef, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import isFunction from 'lodash/isFunction';
+import flatMap from 'lodash/flatMap';
+import some from 'lodash/some';
 import { DiceRoller } from 'rpg-dice-roller';
 
 import { useSnackbar } from 'notistack';
@@ -10,28 +11,43 @@ import { useTranslation } from 'react-i18next';
 import useFocus from '@react-story-rich/core/hooks/useFocus';
 import useTap from '@react-story-rich/core/hooks/useTap';
 
-import Die from '@react-story-rich/ui/components/Die';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginBottom: theme.spacing(2),
+const SEVERITY_BY_FLAG = {
+  success: 'success',
+  criticalSuccess: 'success',
+  failure: 'error',
+  criticalFailure: 'error',
+};
+
+const useStyles = makeStyles(() => ({
+  alertTitle: {
+    fontWeight: 'bold',
   },
-  cardContent: {
-    '&:last-child': {
-      padding: theme.spacing(2),
-    },
+}));
+
+const useAlertStyles = makeStyles((theme) => ({
+  filledSuccess: {
+    color: theme.palette.getContrastText(theme.palette.success.main),
+  },
+  filledError: {
+    color: theme.palette.getContrastText(theme.palette.error.main),
   },
 }));
 
 const roller = new DiceRoller();
 
+const getRollResults = (roll) => flatMap(roll.rolls, ({ useInTotal, rolls }) => (
+  useInTotal !== false && rolls
+));
+
 const DiceRollElement = forwardRef((props, ref) => {
   const classes = useStyles();
+  const alertClasses = useAlertStyles();
+
   const { t } = useTranslation('UI');
   const { enqueueSnackbar } = useSnackbar();
 
@@ -41,10 +57,9 @@ const DiceRollElement = forwardRef((props, ref) => {
     onTap,
     query,
     settings,
+    skill,
     ...passThroughProps
   } = props;
-
-  console.log(injected);
 
   const elementRef = useRef(null);
   const [handleTap, handleKeyPress] = useTap(onTap, false, injected);
@@ -52,32 +67,40 @@ const DiceRollElement = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({ focus: elementRef.current.focus }));
   useFocus(elementRef, injected);
 
-  const successModifier = '>10'; // Hard coded for now, but success will depend of dice Roll type
+  const [roll] = useState(roller.roll(query));
 
-  const [roll] = useState(roller.roll(`${query}${successModifier}`));
-  const severity = useMemo(() => (roll.total === 0 ? 'error' : 'success'), [roll.total]);
+  const flag = useMemo(() => {
+    const results = getRollResults(roll);
 
-  if (injected.enabled && !settings.tableTopMode) {
-    if (isFunction(onTap)) { onTap(injected.nav, injected, roll); }
+    if (some(results, (r) => r.modifierFlags === '***')) { return 'criticalSuccess'; }
+    if (some(results, (r) => r.modifierFlags === '__')) { return 'criticalFailure'; }
 
-    return null;
-  }
+    return roll.total === 0 ? 'failure' : 'success';
+  }, [roll]);
 
-  console.log(roll);
-
+  useEffect(() => {
+    if (flag && injected.enabled) {
+      enqueueSnackbar(t(`Roller.flag.${flag}`), { variant: SEVERITY_BY_FLAG[flag] });
+      if (settings.tableTopMode === false) { handleTap(); }
+    }
+  }, [enqueueSnackbar, flag, handleTap, injected.enabled, settings.tableTopMode, t]);
 
   return (
     <Alert
-      severity={severity}
-      variant="outlined"
       action={(
-        <Button ref={elementRef} onClick={handleTap} onKeyPress={handleKeyPress}>
-        Next
+        <Button ref={elementRef} onClick={handleTap} onKeyPress={handleKeyPress} color="inherit">
+          {t('Roller.next')}
         </Button>
-    )}
+      )}
+      classes={alertClasses}
+      severity={SEVERITY_BY_FLAG[flag]}
+      variant="filled"
+      {...passThroughProps}
     >
-      <AlertTitle>{roll.notation}</AlertTitle>
-      {roll.output}
+      {skill !== null && <AlertTitle className={classes.alertTitle}>{t(`Roller.skill.${skill}`)}</AlertTitle>}
+      {t(`Roller.youRolled`, { roll: roll.output })}
+      &nbsp;
+      {t(`Roller.flag.${flag}`)}
     </Alert>
   );
 });
@@ -88,6 +111,7 @@ DiceRollElement.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * @ignore
    * A set of props injected by the Story renderer
    */
   injected: PropTypes.shape({
@@ -123,12 +147,17 @@ DiceRollElement.propTypes = {
   settings: PropTypes.shape({
     tableTopMode: PropTypes.bool.isRequired,
   }).isRequired,
+  /**
+   * If set to one of these, the title will say : Roll of {skill}!
+   */
+  skill: PropTypes.oneOf(['INT', 'STR', 'AGI', 'STI', 'COMP', 'CHA', 'FLU']),
 };
 
 DiceRollElement.defaultProps = {
   className: '',
   injected: undefined,
   onTap: null,
+  skill: null,
 };
 
 export default connect((state) => ({ settings: state.settings }), {})(DiceRollElement);

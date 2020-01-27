@@ -75,7 +75,8 @@ const Intro = ['Intro', [
 
   {
     Element: DiceRollElement,
-    query: '1d20',
+    query: '1d20>15',
+    skill: 'STI',
   },
 
   {

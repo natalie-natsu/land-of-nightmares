@@ -28,17 +28,17 @@ const useStyles = makeStyles({
 });
 
 const useSnackBarStyles = makeStyles({
+  variantInfo: ({ theme }) => ({
+    backgroundColor: theme.palette.info.main,
+  }),
   variantSuccess: ({ theme }) => ({
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.success.main,
   }),
   variantError: ({ theme }) => ({
     backgroundColor: theme.palette.error.main,
   }),
   variantWarning: ({ theme }) => ({
     backgroundColor: theme.palette.warning.main,
-  }),
-  variantInfo: ({ theme }) => ({
-    backgroundColor: theme.palette.primary.main,
   }),
 });
 

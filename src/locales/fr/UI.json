@@ -18,7 +18,23 @@
   },
   "ProjectName": "Land of Nightmares",
   "Roller": {
-    "youRolled": "Vous avez fait : {{roll}}"
+    "next": "Suivant",
+    "youRolled": "Vous avez fait : {{roll}}",
+    "flag": {
+      "success": "Succès !",
+      "criticalSuccess": "Succès Critique !",
+      "failure": "Échec !",
+      "criticalFailure": "Échec Critique !"
+    },
+    "skill": {
+      "INT": "Épreuve d'intelligence",
+      "STR": "Épreuve de force",
+      "AGI": "Épreuve d'agilité",
+      "STI": "Épreuve d'instinct",
+      "COMP": "Épreuve de sang-froid",
+      "CHA": "Épreuve de charisme",
+      "FLU": "Épreuve d'influence"
+    }
   },
   "Settings": {
     "title": "Paramètres",

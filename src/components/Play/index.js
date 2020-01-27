@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 
 import clsx from 'clsx';
 
-import { SnackbarProvider } from 'notistack';
-
 import { Story, Tree } from '@react-story-rich/core';
 import mapStateToProps from '@react-story-rich/core/reducers/mapStateToProps';
 
@@ -52,23 +50,21 @@ function Play({ dispatch, history }) {
   const root = useMemo(() => new Tree(tree), []);
 
   return (
-    <SnackbarProvider maxSnack={3}>
-      <div ref={ref} className={clsx('Game', classes.root)}>
-        <Drawer open={drawerState.open} toggle={toggleDrawer} />
-        <ScrollToBottom targetRef={ref} />
-        <Container maxWidth="sm">
-          <Story
-            defaultElement={DefaultElement}
-            dispatch={dispatch}
-            history={history}
-            tree={root}
-          />
-        </Container>
-        <AppBar position="fixed" className={classes.appBar} elevation={4}>
-          <Navigation rootPath="/play" className={classes.navigation} onMenuClick={toggleDrawer(true)} />
-        </AppBar>
-      </div>
-    </SnackbarProvider>
+    <div ref={ref} className={clsx('Game', classes.root)}>
+      <Drawer open={drawerState.open} toggle={toggleDrawer} />
+      <ScrollToBottom targetRef={ref} />
+      <Container maxWidth="sm">
+        <Story
+          defaultElement={DefaultElement}
+          dispatch={dispatch}
+          history={history}
+          tree={root}
+        />
+      </Container>
+      <AppBar position="fixed" className={classes.appBar} elevation={4}>
+        <Navigation rootPath="/play" className={classes.navigation} onMenuClick={toggleDrawer(true)} />
+      </AppBar>
+    </div>
   );
 }
 

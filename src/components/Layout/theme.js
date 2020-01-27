@@ -1,15 +1,18 @@
 import deepPurple from '@material-ui/core/colors/deepPurple';
-import amber from '@material-ui/core/colors/amber';
+import red from '@material-ui/core/colors/red';
 import orange from '@material-ui/core/colors/orange';
-import pink from '@material-ui/core/colors/pink';
 import teal from '@material-ui/core/colors/teal';
+import cyan from '@material-ui/core/colors/cyan';
+import deepOrange from '@material-ui/core/colors/deepOrange';
+import lightGreen from '@material-ui/core/colors/lightGreen';
 
 const light = {
   palette: {
     type: 'light',
     primary: deepPurple,
     secondary: teal,
-    error: pink,
+    success: lightGreen,
+    error: red,
     warning: orange,
   },
 };
@@ -17,16 +20,12 @@ const light = {
 const dark = {
   palette: {
     type: 'dark',
-    primary: {
-      main: deepPurple[200],
-    },
+    primary: { main: deepPurple[200] },
     secondary: teal,
-    error: {
-      main: pink[200],
-    },
-    warning: {
-      main: amber[200],
-    },
+    success: { main: lightGreen[200] },
+    info: { main: cyan[200] },
+    error: { main: red[200] },
+    warning: { main: deepOrange[200] },
   },
 };
 
