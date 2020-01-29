@@ -6,7 +6,7 @@ import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import usePizzicato from 'hooks/usePizzicato';
-import usePizzicatoAutoPlay from 'hooks/usePizzicatoAutoPlay';
+import usePizzicatoAutoPlay from 'hooks/usePizzicatoPlay';
 import useVolume from 'hooks/useVolume';
 
 import Play from 'components/Play';
@@ -20,24 +20,24 @@ import musicPath from './app.mp3';
 const musicName = 'Freedom (Epic Fantasy) by lukiaffe';
 
 function App({ settings, allowAudio }) {
-  const [pizzicato, pizzicatoState] = usePizzicato({ loop: true, path: musicPath });
-  useVolume(pizzicato, { audio: settings.audio, volume: settings.musicVolume });
-  usePizzicatoAutoPlay(allowAudio, pizzicato, pizzicatoState);
-
-  const { t } = useTranslation('UI');
-  const { enqueueSnackbar } = useSnackbar();
-
-  useEffect(() => {
-    if (pizzicatoState.isPlaying) {
-      enqueueSnackbar(t(`App.nowPlaying`, { name: musicName }), { variant: 'info' });
-    }
-  }, [enqueueSnackbar, pizzicatoState.isPlaying, t]);
+  // const [pizzicato, pizzicatoState] = usePizzicato({ loop: true, path: musicPath });
+  // useVolume(pizzicato, { audio: settings.audio, volume: settings.musicVolume });
+  // usePizzicatoAutoPlay(allowAudio, pizzicato, pizzicatoState);
+  //
+  // const { t } = useTranslation('UI');
+  // const { enqueueSnackbar } = useSnackbar();
+  //
+  // useEffect(() => {
+  //   if (pizzicatoState.isPlaying) {
+  //     enqueueSnackbar(t(`App.nowPlaying`, { name: musicName }), { variant: 'info' });
+  //   }
+  // }, [enqueueSnackbar, pizzicatoState.isPlaying, t]);
 
   return (
     <Router>
       <Switch>
         <Route path="/play">
-          <Play music={pizzicato} />
+          <Play music={/* pizzicato */ undefined} />
         </Route>
         <Route path="/settings">
           <ScrollToTop />

@@ -1290,10 +1290,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@react-story-rich/core@^2.0.0-beta.5":
-  version "2.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/@react-story-rich/core/-/core-2.0.0-beta.5.tgz#94a210d00eb48a250d9dc4a2b09d0b6800f2d53e"
-  integrity sha512-S1+Ie2TmILfnaWGm9tz7CtMyVpXxBdzxTCgyxrucZ+2ZPeZClzqeLiH9aaqT44A5ydm8A2f6EXY1a02bCiGPMQ==
+"@react-story-rich/core@^2.0.0-beta.6":
+  version "2.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@react-story-rich/core/-/core-2.0.0-beta.6.tgz#6f250a908a9b90f2efd40a68652aa11b0e4f595c"
+  integrity sha512-b5/IjmYzr+sgAV8nh1FjDw0Y/jWSPjs21LiTnEYv9MFgE9tZHECOLB9J/II/D8LMHjAA3UYBAr9MwRZryZqdzw==
   dependencies:
     "@babel/runtime" "^7.7.4"
     lodash "^4.17.15"

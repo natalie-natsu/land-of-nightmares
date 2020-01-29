@@ -1,11 +1,16 @@
 import ButtonElement from '@react-story-rich/ui/components/Element/Button';
 import DiceRollElement from 'components/Element/DiceRoll';
 
+import test from './assets/test.mp3';
+
 const Intro = ['Intro', [
-  `Aussi grande soit-elle, chaque civilisation est vouée à disparaître
-  et les ruines laissées par nos ancêtres cohabitent avec les monuments de notre ère.
-  Mais dans ce vieux monde abîmé par le poids de la guerre fleuri l'audace des Hommes.
-  Ils forgent le progrès, et laissent une marque parmi leurs pairs.`,
+  {
+    children: `Aussi grande soit-elle, chaque civilisation est vouée à disparaître
+    et les ruines laissées par nos ancêtres cohabitent avec les monuments de notre ère.
+    Mais dans ce vieux monde abîmé par le poids de la guerre fleuri l'audace des Hommes.
+    Ils forgent le progrès, et laissent une marque parmi leurs pairs.`,
+    dialog: test,
+  },
 
   `Cette aura qui vous entoure me parle,
   elle me montre le destin qui vous accompagne, vous et votre audace.

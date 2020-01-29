@@ -13,6 +13,7 @@ import useTap from '@react-story-rich/core/hooks/useTap';
 import useTimeout from '@react-story-rich/core/hooks/useTimeout';
 import useActions from '@react-story-rich/ui/hooks/useActions';
 import useProgress from '@react-story-rich/ui/hooks/useProgress';
+import usePizzicato from 'hooks/usePizzicato';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -24,6 +25,9 @@ import Typography from '@material-ui/core/Typography';
 import Alert from '@material-ui/lab/Alert';
 
 import Progress from '@react-story-rich/ui/components/Progress';
+import usePizzicatoPlay from '../../../hooks/usePizzicatoPlay';
+import useVolume from '../../../hooks/useVolume';
+import usePizzicatoAutoStop from '../../../hooks/usePizzicatoAutoStop';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,8 +53,10 @@ const DefaultElement = forwardRef((props, ref) => {
 
   const {
     actions,
+    allowAudio,
     children,
     className,
+    dialog,
     hint,
     injected,
     media,
@@ -70,7 +76,14 @@ const DefaultElement = forwardRef((props, ref) => {
   const [hasActions, Actions, actionRef] = useActions(actions, injected, { t });
   const hasProgress = useProgress(onTimeout, timeout, injected, hasActions);
 
+  const [sound, isSoundLoaded] = usePizzicato({ path: dialog }, injected.enabled);
+  const [isPlaying] = usePizzicatoPlay(sound, allowAudio, isSoundLoaded, true);
+  useVolume(sound, { audio: settings.audio, volume: settings.dialogVolume });
+  usePizzicatoAutoStop(sound, injected);
+
   useImperativeHandle(ref, () => ({ focus: elementRef.current.focus }));
+
+  console.log(sound, isSoundLoaded, isPlaying);
 
   useEnabled(onEnable, injected);
   useFocus(hasActions ? actionRef : elementRef, injected);
@@ -125,6 +138,10 @@ DefaultElement.propTypes = {
    */
   actions: PropTypes.arrayOf(PropTypes.object),
   /**
+   * @ignore
+   */
+  allowAudio: PropTypes.bool.isRequired,
+  /**
    * Your own content displayed in a CardContent component
    * @see {@link https://material-ui.com/components/cards/#card | MUI Card demo}
    */
@@ -133,6 +150,10 @@ DefaultElement.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * A path of a dialog to play when card is enabled;
+   */
+  dialog: PropTypes.string,
   /**
    * A helper text
    */
@@ -213,6 +234,7 @@ DefaultElement.propTypes = {
 DefaultElement.defaultProps = {
   actions: [],
   className: '',
+  dialog: '',
   hint: '',
   injected: undefined,
   media: null,
@@ -225,4 +247,7 @@ DefaultElement.defaultProps = {
   typographyProps: {},
 };
 
-export default connect((state) => ({ settings: state.settings }), {})(DefaultElement);
+export default connect((state) => ({
+  allowAudio: state.allowAudio,
+  settings: state.settings,
+}), {})(DefaultElement);
