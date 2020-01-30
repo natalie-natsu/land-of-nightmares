@@ -4,7 +4,18 @@
     "text": "Nous avons besoin que vous autorisiez les sons si vous voulez une meilleure expérience de jeu. Vous pouvez quand même jouer sans son si vous préférez."
   },
   "App": {
-    "nowPlaying": "Vous écoutez : {{name}}"
+    "nowPlaying": "Vous écoutez : {{name}}",
+    "mainMusic": "{{title}} par {{author}}"
+  },
+  "Credits": {
+    "avatarAlt": "Avatar de {{name}}",
+    "authors": "Créateurs",
+    "development": "Développement",
+    "scenario": "Scénario",
+    "graphics": "Graphismes",
+    "audio": "Sons & musiques",
+    "voices": "Voix",
+    "testers": "Testeurs"
   },
   "Drawer": {
     "titleScreen": "Écran d'acceuil",

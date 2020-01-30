@@ -14,6 +14,10 @@ import useTimeout from '@react-story-rich/core/hooks/useTimeout';
 import useActions from '@react-story-rich/ui/hooks/useActions';
 import useProgress from '@react-story-rich/ui/hooks/useProgress';
 import usePizzicato from 'hooks/usePizzicato';
+import usePizzicatoPlay from 'hooks/usePizzicatoPlay';
+import useVolume from 'hooks/useVolume';
+import usePizzicatoAutoStop from 'hooks/usePizzicatoAutoStop';
+import useDialog from 'hooks/useDialog';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -23,11 +27,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Alert from '@material-ui/lab/Alert';
-
 import Progress from '@react-story-rich/ui/components/Progress';
-import usePizzicatoPlay from '../../../hooks/usePizzicatoPlay';
-import useVolume from '../../../hooks/useVolume';
-import usePizzicatoAutoStop from '../../../hooks/usePizzicatoAutoStop';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,29 +71,34 @@ const DefaultElement = forwardRef((props, ref) => {
     ...passThroughProps
   } = props;
 
-  const elementRef = useRef(null);
-  const [handleTap, handleKeyPress] = useTap(onTap, readOnly, injected);
-  const [hasActions, Actions, actionRef] = useActions(actions, injected, { t });
-  const hasProgress = useProgress(onTimeout, timeout, injected, hasActions);
-
+  // Sound
   const [sound, isSoundLoaded] = usePizzicato({ path: dialog }, injected.enabled);
-  const [isPlaying] = usePizzicatoPlay(sound, allowAudio, isSoundLoaded, true);
+  const [
+    onDialogTap,
+    onDialogTimeout,
+    dialogTimeout,
+  ] = useDialog(sound, allowAudio, isSoundLoaded, props);
+
+  usePizzicatoPlay(sound, allowAudio, isSoundLoaded, true);
   useVolume(sound, { audio: settings.audio, volume: settings.dialogVolume });
   usePizzicatoAutoStop(sound, injected);
 
-  useImperativeHandle(ref, () => ({ focus: elementRef.current.focus }));
-
-  console.log(sound, isSoundLoaded, isPlaying);
+  // Events
+  const [handleTap, handleKeyPress] = useTap(onDialogTap, readOnly, injected);
+  const [hasActions, Actions, actionRef] = useActions(actions, injected, { t });
+  const hasProgress = useProgress(onDialogTimeout, dialogTimeout, injected, hasActions);
 
   useEnabled(onEnable, injected);
-  useFocus(hasActions ? actionRef : elementRef, injected);
-  useTimeout(onTimeout, timeout, injected);
+  useTimeout(onDialogTimeout, dialogTimeout, injected);
 
+  // Element & refs
+  const elementRef = useRef(null);
   const disabled = useMemo(() => (
-    !injected.enabled
-    || readOnly
-    || hasActions
+    !injected.enabled || readOnly || hasActions
   ), [hasActions, injected.enabled, readOnly]);
+
+  useImperativeHandle(ref, () => ({ focus: elementRef.current.focus }));
+  useFocus(hasActions ? actionRef : elementRef, injected);
 
   return (
     <Card className={clsx(classes.root, className)} {...passThroughProps}>
@@ -240,7 +245,7 @@ DefaultElement.defaultProps = {
   media: null,
   onEnable: noop,
   onTap: null,
-  onTimeout: noop,
+  onTimeout: null,
   readOnly: false,
   text: false,
   timeout: 0,

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Play({ dispatch, history }) {
+function Play({ dispatch, history, mainMusic }) {
   const ref = useRef(null);
   const classes = useStyles();
 
@@ -52,6 +52,11 @@ function Play({ dispatch, history }) {
   }, [drawerState.open]);
 
   const root = useMemo(() => new Tree(tree), []);
+
+  useEffect(() => {
+    mainMusic.stop();
+    return () => mainMusic.play();
+  });
 
   return (
     <div ref={ref} className={clsx('Game', classes.root)}>
@@ -76,6 +81,7 @@ function Play({ dispatch, history }) {
 Play.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.array.isRequired,
+  mainMusic: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(Play);
