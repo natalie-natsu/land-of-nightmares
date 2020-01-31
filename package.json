@@ -1,14 +1,14 @@
 {
   "name": "land-of-nightmares",
-  "homepage" : "http://wasa42.github.io/land-of-nightmares",
+  "homepage": "http://wasa42.github.io/land-of-nightmares",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.8.3",
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.39",
-    "@react-story-rich/core": "^2.0.0-beta.3",
-    "@react-story-rich/ui": "^2.0.0-beta.3",
+    "@react-story-rich/core": "^2.0.0-beta.7",
+    "@react-story-rich/ui": "^2.0.0-beta.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -29,7 +29,8 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "rpg-dice-roller": "^4.0.1"
   },
   "devDependencies": {
     "eslint-config-airbnb": "^18.0.1",

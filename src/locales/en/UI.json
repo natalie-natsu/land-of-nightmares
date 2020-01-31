@@ -4,7 +4,18 @@
     "text": "We need you to allow sounds if you want a better gaming experience. You can still play without sound if you prefer."
   },
   "App": {
-    "nowPlaying": "Now playing: {{name}}"
+    "nowPlaying": "Now playing: {{name}}",
+    "mainMusic": "{{title}} by {{author}}"
+  },
+  "Credits": {
+    "avatarAlt": "{{name}}'s avatar",
+    "authors": "Authors",
+    "development": "Development",
+    "scenario": "Scénario",
+    "graphics": "Graphics",
+    "audio": "Audio",
+    "voices": "Voices",
+    "testers": "Testers"
   },
   "Drawer": {
     "titleScreen": "Title screen",
@@ -17,6 +28,25 @@
     "menu": "Menu"
   },
   "ProjectName": "Land of Nightmares",
+  "Roller": {
+    "next": "Next",
+    "youRolled": "Your rolled: {{roll}}",
+    "flag": {
+      "success": "Success!",
+      "criticalSuccess": "Critical Success!",
+      "failure": "Failure!",
+      "criticalFailure": "Critical Failure!"
+    },
+    "skill": {
+      "INT": "Roll of intellect",
+      "STR": "Roll of strength",
+      "AGI": "Roll of agility",
+      "TIN": "Roll of instinct",
+      "COM": "Roll of composure",
+      "CHA": "Roll of charisma",
+      "FLU": "Roll of influence"
+    }
+  },
   "Settings": {
     "title": "Settings",
     "subheader": "Change them at any time without altering the game",

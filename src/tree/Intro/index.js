@@ -1,10 +1,18 @@
-import ButtonElement from 'components/Element/Button';
+import ButtonElement from '@react-story-rich/ui/components/Element/Button';
+import Navigation from '@react-story-rich/core/classes/Navigation';
+
+import DiceRollElement from 'components/Element/DiceRoll';
+
+import test from './assets/test.mp3';
 
 const Intro = ['Intro', [
-  `Aussi grande soit-elle, chaque civilisation est vouée à disparaître
-  et les ruines laissées par nos ancêtres cohabitent avec les monuments de notre ère.
-  Mais dans ce vieux monde abîmé par le poids de la guerre fleuri l'audace des Hommes.
-  Ils forgent le progrès, et laissent une marque parmi leurs pairs.`,
+  {
+    children: `Aussi grande soit-elle, chaque civilisation est vouée à disparaître
+    et les ruines laissées par nos ancêtres cohabitent avec les monuments de notre ère.
+    Mais dans ce vieux monde abîmé par le poids de la guerre fleuri l'audace des Hommes.
+    Ils forgent le progrès, et laissent une marque parmi leurs pairs.`,
+    dialog: test,
+  },
 
   `Cette aura qui vous entoure me parle,
   elle me montre le destin qui vous accompagne, vous et votre audace.
@@ -19,12 +27,12 @@ const Intro = ['Intro', [
    et les conséquences de vos actions répondront à leur propre mystère.`,
 
   {
-    component: ButtonElement,
+    Element: ButtonElement,
     children: 'Land of Nightmares',
     fontFamily: 'Rebucked',
     fontSize: 'xl',
     color: 'primary',
-    onTap: ({ goForward }) => goForward(),
+    onTap: Navigation.skip,
   },
 
   `Terminons les récits du passé, les Hommes et leur empire,
@@ -39,7 +47,7 @@ const Intro = ['Intro', [
     onTimeout: ({ goForward }) => goForward(1),
     timeout: 20000,
     actions: [
-      { children: `Se réveiller`, onClick: ({ goForward }) => goForward() },
+      { children: `Se réveiller`, onClick: Navigation.skip },
       { children: `Rester passive`, onClick: ({ goForward }) => goForward(1) },
     ],
   },
@@ -67,9 +75,17 @@ const Intro = ['Intro', [
     hint: `Mettre en garde ce qui est venu vous chercher est sans doute la meilleure option,
     mais vous pourriez aussi essayer de puisez dans votre instinct primaire pour des résultats plus divers.`,
     actions: [
-      { children: `Mettre en garde`, onClick: ({ goForward }) => goForward() },
-      { children: `Puiser dans l'instinct`, onClick: ({ goForward }) => goForward() },
+      { children: `Mettre en garde`, onClick: Navigation.skip },
+      { children: `Puiser dans l'instinct`, onClick: Navigation.skip },
     ],
+  },
+
+  {
+    Element: DiceRollElement,
+    query: '1d20>15',
+    skill: 'TIN',
+    onSuccess: Navigation.skip,
+    onFailure: Navigation.skip,
   },
 
   {

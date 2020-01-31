@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import isEmpty from 'lodash/isEmpty';
 
+import { SnackbarProvider } from 'notistack';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
@@ -26,6 +27,21 @@ const useStyles = makeStyles({
   }),
 });
 
+const useSnackBarStyles = makeStyles({
+  variantInfo: ({ theme }) => ({
+    backgroundColor: theme.palette.info.main,
+  }),
+  variantSuccess: ({ theme }) => ({
+    backgroundColor: theme.palette.success.main,
+  }),
+  variantError: ({ theme }) => ({
+    backgroundColor: theme.palette.error.main,
+  }),
+  variantWarning: ({ theme }) => ({
+    backgroundColor: theme.palette.warning.main,
+  }),
+});
+
 function Layout({ backgroundImage, children, dark }) {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
@@ -38,12 +54,19 @@ function Layout({ backgroundImage, children, dark }) {
 
   const theme = useMemo(() => createMuiTheme(themeOptions[mode]), [mode]);
   const classes = useStyles({ theme, backgroundImage });
+  const snackBarClasses = useSnackBarStyles({ theme });
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={classes.root}>
-        {children}
-      </div>
+      <SnackbarProvider
+        maxSnack={6}
+        anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+        classes={snackBarClasses}
+      >
+        <div className={classes.root}>
+          {children}
+        </div>
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }

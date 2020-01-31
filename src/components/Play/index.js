@@ -1,10 +1,8 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import clsx from 'clsx';
-
-import { SnackbarProvider } from 'notistack';
 
 import { Story, Tree } from '@react-story-rich/core';
 import mapStateToProps from '@react-story-rich/core/reducers/mapStateToProps';
@@ -39,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Play({ dispatch, history }) {
+function Play({ dispatch, history, mainMusic }) {
   const ref = useRef(null);
   const classes = useStyles();
 
@@ -51,30 +49,34 @@ function Play({ dispatch, history }) {
 
   const root = useMemo(() => new Tree(tree), []);
 
+  useEffect(() => {
+    mainMusic.stop();
+    return () => mainMusic.play();
+  });
+
   return (
-    <SnackbarProvider maxSnack={3}>
-      <div ref={ref} className={clsx('Game', classes.root)}>
-        <Drawer open={drawerState.open} toggle={toggleDrawer} />
-        <ScrollToBottom targetRef={ref} />
-        <Container maxWidth="sm">
-          <Story
-            dispatch={dispatch}
-            history={history}
-            nodeComponent={DefaultElement}
-            tree={root}
-          />
-        </Container>
-        <AppBar position="fixed" className={classes.appBar} elevation={4}>
-          <Navigation rootPath="/play" className={classes.navigation} onMenuClick={toggleDrawer(true)} />
-        </AppBar>
-      </div>
-    </SnackbarProvider>
+    <div ref={ref} className={clsx('Game', classes.root)}>
+      <Drawer open={drawerState.open} toggle={toggleDrawer} />
+      <ScrollToBottom targetRef={ref} />
+      <Container maxWidth="sm">
+        <Story
+          defaultElement={DefaultElement}
+          dispatch={dispatch}
+          history={history}
+          tree={root}
+        />
+      </Container>
+      <AppBar position="fixed" className={classes.appBar} elevation={4}>
+        <Navigation rootPath="/play" className={classes.navigation} onMenuClick={toggleDrawer(true)} />
+      </AppBar>
+    </div>
   );
 }
 
 Play.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.array.isRequired,
+  mainMusic: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(Play);
