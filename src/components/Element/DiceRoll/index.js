@@ -1,8 +1,10 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import flatMap from 'lodash/flatMap';
+import isFunction from 'lodash/isFunction';
+import noop from 'lodash/noop';
 import some from 'lodash/some';
 import { DiceRoller } from 'rpg-dice-roller';
 
@@ -15,6 +17,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
+
 import { updateHistorySnapshot } from '@react-story-rich/core/reducers/history';
 
 const SEVERITY_BY_FLAG = {
@@ -59,23 +62,18 @@ const DiceRollElement = forwardRef((props, ref) => {
     className,
     dispatch,
     injected,
-    onTap,
     query,
+    onCriticalFailure,
+    onCriticalSuccess,
+    onFailure,
+    onSuccess,
     settings,
     skill,
     snapshot,
     ...passThroughProps
   } = props;
 
-  const elementRef = useRef(null);
-  const [handleTap, handleKeyPress] = useTap(onTap, false, injected);
-
-  useImperativeHandle(ref, () => ({ focus: elementRef.current.focus }));
-  useFocus(elementRef, injected);
-
-  const { roll } = snapshot;
-
-  const flag = useMemo(() => {
+  const getFlag = useCallback((roll) => {
     if (!roll) { return false; }
 
     const results = getRollResults(roll);
@@ -84,34 +82,73 @@ const DiceRollElement = forwardRef((props, ref) => {
     if (some(results, (r) => r.modifierFlags === '__')) { return 'criticalFailure'; }
 
     return roll.total === 0 ? 'failure' : 'success';
-  }, [roll]);
+  }, []);
+
+  const { roll } = snapshot;
+  const { tableTopMode } = settings;
+
+  const handleNext = useCallback((flag) => {
+    if (['success', 'criticalSuccess'].includes(flag)) {
+      return isFunction(onCriticalSuccess) && flag === 'criticalSuccess' ? onCriticalSuccess : onSuccess;
+    }
+
+    if (['failure', 'criticalFailure'].includes(flag)) {
+      return isFunction(onCriticalFailure) && flag === 'criticalFailure' ? onCriticalFailure : onFailure;
+    }
+
+    return noop;
+  }, [onCriticalFailure, onCriticalSuccess, onFailure, onSuccess]);
+
+  const flag = useMemo(() => getFlag(roll), [getFlag, roll]);
+
+  const [handleTap, handleKeyPress] = useTap(handleNext(flag), false, injected);
 
   useEffect(() => {
     if (!roll && injected.enabled) {
-      dispatch(updateHistorySnapshot(injected.indexInHistory, {
-        roll: roller.roll(query).toJSON(),
-      }));
-    }
-  }, [dispatch, injected.enabled, injected.indexInHistory, query, roll]);
+      const newRoll = roller.roll(query).toJSON();
+      const newFlag = getFlag(newRoll);
 
-  useEffect(() => {
-    if (flag && injected.enabled) {
-      enqueueSnackbar(t(`Roller.flag.${flag}`), { variant: SEVERITY_BY_FLAG[flag] });
-      if (settings.tableTopMode === false) { handleTap(); }
-    }
-  }, [enqueueSnackbar, flag, handleTap, injected.enabled, settings.tableTopMode, t]);
+      dispatch(updateHistorySnapshot(injected.indexInHistory, { roll: newRoll }));
+      enqueueSnackbar(t(`Roller.flag.${newFlag}`), { variant: SEVERITY_BY_FLAG[newFlag] });
 
-  if (settings.tableTopMode === false) {
+      if (tableTopMode === false) {
+        handleNext(newFlag)(injected.nav);
+      }
+    }
+  }, [
+    dispatch,
+    enqueueSnackbar,
+    getFlag,
+    handleNext,
+    handleTap,
+    injected.enabled,
+    injected.indexInHistory,
+    injected.nav,
+    query,
+    roll,
+    t,
+    tableTopMode,
+  ]);
+
+  if (tableTopMode === false) {
     return null;
   }
 
+  const Action = () => {
+    const elementRef = useRef(null);
+    useImperativeHandle(ref, () => ({ focus: elementRef.current.focus }));
+    useFocus(elementRef, injected);
+
+    return (
+      <Button ref={elementRef} onClick={handleTap} onKeyPress={handleKeyPress} color="inherit">
+        {t('Roller.next')}
+      </Button>
+    );
+  };
+
   return roll && (
     <Alert
-      action={(
-        <Button ref={elementRef} onClick={handleTap} onKeyPress={handleKeyPress} color="inherit">
-          {t('Roller.next')}
-        </Button>
-      )}
+      action={<Action />}
       classes={alertClasses}
       severity={SEVERITY_BY_FLAG[flag]}
       variant="filled"
@@ -162,9 +199,21 @@ DiceRollElement.propTypes = {
     nav: PropTypes.object.isRequired,
   }),
   /**
-   * Callback triggered when Element is enabled and is clicked or key pressed.
+   * Callback triggered when Roll result is critical failure
    */
-  onTap: PropTypes.func,
+  onCriticalFailure: PropTypes.func,
+  /**
+   * Callback triggered when Roll result is critical success
+   */
+  onCriticalSuccess: PropTypes.func,
+  /**
+   * Callback triggered when Roll result is failure
+   */
+  onFailure: PropTypes.func.isRequired,
+  /**
+   * Callback triggered when Roll result is success
+   */
+  onSuccess: PropTypes.func.isRequired,
   /**
    * http://rpg.greenimp.co.uk/dice-roller/?
    */
@@ -178,19 +227,20 @@ DiceRollElement.propTypes = {
   /**
    * If set to one of these, the title will say : Roll of {skill}!
    */
-  skill: PropTypes.oneOf(['INT', 'STR', 'AGI', 'STI', 'COMP', 'CHA', 'FLU']),
+  skill: PropTypes.oneOf(['INT', 'STR', 'AGI', 'TIN', 'COM', 'CHA', 'FLU']),
   snapshot: PropTypes.object,
 };
 
 DiceRollElement.defaultProps = {
   className: '',
   injected: undefined,
-  onTap: null,
+  onCriticalFailure: null,
+  onCriticalSuccess: null,
   skill: null,
   snapshot: {},
 };
 
 export default connect((state, ownProps) => ({
   settings: state.settings,
-  // snapshot: state.history[ownProps.injected.indexInHistory].snapshot,
+  snapshot: state.history[ownProps.injected.indexInHistory].snapshot,
 }))(DiceRollElement);

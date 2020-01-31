@@ -41,8 +41,8 @@
       "INT": "Roll of intellect",
       "STR": "Roll of strength",
       "AGI": "Roll of agility",
-      "STI": "Roll of instinct",
-      "COMP": "Roll of composure",
+      "TIN": "Roll of instinct",
+      "COM": "Roll of composure",
       "CHA": "Roll of charisma",
       "FLU": "Roll of influence"
     }

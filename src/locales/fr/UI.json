@@ -41,8 +41,8 @@
       "INT": "Épreuve d'intelligence",
       "STR": "Épreuve de force",
       "AGI": "Épreuve d'agilité",
-      "STI": "Épreuve d'instinct",
-      "COMP": "Épreuve de sang-froid",
+      "TIN": "Épreuve d'instinct",
+      "COM": "Épreuve de sang-froid",
       "CHA": "Épreuve de charisme",
       "FLU": "Épreuve d'influence"
     }

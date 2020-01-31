@@ -9,7 +9,7 @@ export default createReducer({
   audio: false,
   darkMode: true,
   hints: true,
-  tableTopMode: false,
+  tableTopMode: true,
   dialogVolume: 75,
   musicVolume: 30,
   soundVolume: 50,

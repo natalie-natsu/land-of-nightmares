@@ -17,7 +17,6 @@ import Navigation from 'components/Navigation';
 import ScrollToBottom from 'components/ScrollToBottom';
 
 import tree from 'tree';
-import AllowAudio from '../AllowAudio';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -35,9 +34,6 @@ const useStyles = makeStyles((theme) => ({
   },
   navigation: {
     width: '100vw',
-  },
-  allowAudio: {
-    marginTop: theme.spacing(2),
   },
 }));
 
@@ -69,7 +65,6 @@ function Play({ dispatch, history, mainMusic }) {
           history={history}
           tree={root}
         />
-        <AllowAudio className={classes.allowAudio} />
       </Container>
       <AppBar position="fixed" className={classes.appBar} elevation={4}>
         <Navigation rootPath="/play" className={classes.navigation} onMenuClick={toggleDrawer(true)} />

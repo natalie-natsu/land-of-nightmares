@@ -1,4 +1,6 @@
 import ButtonElement from '@react-story-rich/ui/components/Element/Button';
+import Navigation from '@react-story-rich/core/classes/Navigation';
+
 import DiceRollElement from 'components/Element/DiceRoll';
 
 import test from './assets/test.mp3';
@@ -30,7 +32,7 @@ const Intro = ['Intro', [
     fontFamily: 'Rebucked',
     fontSize: 'xl',
     color: 'primary',
-    onTap: ({ goForward }) => goForward(),
+    onTap: Navigation.skip,
   },
 
   `Terminons les récits du passé, les Hommes et leur empire,
@@ -45,7 +47,7 @@ const Intro = ['Intro', [
     onTimeout: ({ goForward }) => goForward(1),
     timeout: 20000,
     actions: [
-      { children: `Se réveiller`, onClick: ({ goForward }) => goForward() },
+      { children: `Se réveiller`, onClick: Navigation.skip },
       { children: `Rester passive`, onClick: ({ goForward }) => goForward(1) },
     ],
   },
@@ -73,15 +75,17 @@ const Intro = ['Intro', [
     hint: `Mettre en garde ce qui est venu vous chercher est sans doute la meilleure option,
     mais vous pourriez aussi essayer de puisez dans votre instinct primaire pour des résultats plus divers.`,
     actions: [
-      { children: `Mettre en garde`, onClick: ({ goForward }) => goForward() },
-      { children: `Puiser dans l'instinct`, onClick: ({ goForward }) => goForward() },
+      { children: `Mettre en garde`, onClick: Navigation.skip },
+      { children: `Puiser dans l'instinct`, onClick: Navigation.skip },
     ],
   },
 
   {
     Element: DiceRollElement,
     query: '1d20>15',
-    skill: 'STI',
+    skill: 'TIN',
+    onSuccess: Navigation.skip,
+    onFailure: Navigation.skip,
   },
 
   {
