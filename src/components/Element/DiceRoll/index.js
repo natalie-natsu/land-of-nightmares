@@ -140,7 +140,13 @@ const DiceRollElement = forwardRef((props, ref) => {
     useFocus(elementRef, injected);
 
     return (
-      <Button ref={elementRef} onClick={handleTap} onKeyPress={handleKeyPress} color="inherit">
+      <Button
+        disabled={!injected.enabled}
+        color="inherit"
+        ref={elementRef}
+        onClick={handleTap}
+        onKeyPress={handleKeyPress}
+      >
         {t('Roller.next')}
       </Button>
     );
