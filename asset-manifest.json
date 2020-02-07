@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/land-of-nightmares/static/css/main.c51bac2a.chunk.css",
-    "main.js": "/land-of-nightmares/static/js/main.c9727106.chunk.js",
-    "main.js.map": "/land-of-nightmares/static/js/main.c9727106.chunk.js.map",
+    "main.js": "/land-of-nightmares/static/js/main.3ccfc2d7.chunk.js",
+    "main.js.map": "/land-of-nightmares/static/js/main.3ccfc2d7.chunk.js.map",
     "runtime-main.js": "/land-of-nightmares/static/js/runtime-main.77da1503.js",
     "runtime-main.js.map": "/land-of-nightmares/static/js/runtime-main.77da1503.js.map",
-    "static/js/2.b44a3738.chunk.js": "/land-of-nightmares/static/js/2.b44a3738.chunk.js",
-    "static/js/2.b44a3738.chunk.js.map": "/land-of-nightmares/static/js/2.b44a3738.chunk.js.map",
+    "static/js/2.6b9ea54f.chunk.js": "/land-of-nightmares/static/js/2.6b9ea54f.chunk.js",
+    "static/js/2.6b9ea54f.chunk.js.map": "/land-of-nightmares/static/js/2.6b9ea54f.chunk.js.map",
     "index.html": "/land-of-nightmares/index.html",
-    "precache-manifest.e27398cc0c9c53b082b092515da0acf8.js": "/land-of-nightmares/precache-manifest.e27398cc0c9c53b082b092515da0acf8.js",
+    "precache-manifest.f9af725e40460811e7cada0728d3afc2.js": "/land-of-nightmares/precache-manifest.f9af725e40460811e7cada0728d3afc2.js",
     "service-worker.js": "/land-of-nightmares/service-worker.js",
     "static/css/main.c51bac2a.chunk.css.map": "/land-of-nightmares/static/css/main.c51bac2a.chunk.css.map",
-    "static/js/2.b44a3738.chunk.js.LICENSE": "/land-of-nightmares/static/js/2.b44a3738.chunk.js.LICENSE",
-    "static/media/app.mp3": "/land-of-nightmares/static/media/app.77594075.mp3",
+    "static/js/2.6b9ea54f.chunk.js.LICENSE": "/land-of-nightmares/static/js/2.6b9ea54f.chunk.js.LICENSE",
+    "static/media/United-Nukkie.mp3": "/land-of-nightmares/static/media/United-Nukkie.e07fcb28.mp3",
     "static/media/index.css": "/land-of-nightmares/static/media/rebucked.42004ee2.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.77da1503.js",
-    "static/js/2.b44a3738.chunk.js",
+    "static/js/2.6b9ea54f.chunk.js",
     "static/css/main.c51bac2a.chunk.css",
-    "static/js/main.c9727106.chunk.js"
+    "static/js/main.3ccfc2d7.chunk.js"
   ]
 }

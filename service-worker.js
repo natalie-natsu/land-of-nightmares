@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/land-of-nightmares/precache-manifest.e27398cc0c9c53b082b092515da0acf8.js"
+  "/land-of-nightmares/precache-manifest.f9af725e40460811e7cada0728d3afc2.js"
 );
 
 self.addEventListener('message', (event) => {
