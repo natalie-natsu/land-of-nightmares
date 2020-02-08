@@ -43,10 +43,10 @@ const Intro = ['Intro', [
   Vous entendez le craquement du granite qui se dérobe devant vous.`,
 
   `Une lumière vient alors intensément vous éblouir et vous sortir de ce long repos.
-  Vous la sentez aussi sur votre coprs, nu, comme si vous n'aviez jamais goûté à la vie.`,
+  Vous la sentez aussi sur votre corps, nu, comme si vous n'aviez jamais goûté à la vie.`,
 
   `L'air vous agresse, il vous fouette,
-  comme s'il se vangeait, lui aussi, de ne jamais avoir pu vous toucher durant toutes ces années !
+  comme s'il se vengeait, lui aussi, de ne jamais avoir pu vous toucher durant toutes ces années !
   Ou ces millénaires, qui sait ?`,
 
   {
@@ -80,7 +80,7 @@ const Intro = ['Intro', [
   `Votre instinct vous parle. Il sent la présence de trois personnes qu'il vaudrait mieux ne pas confronter.
   Vous en êtes certaine, c'est le dialogue qu'il faudra privilégier.`,
 
-  `Allongé sur ce lit de pierre, votre corps se rédécouvre. Il se remémore qui vous êtes,
+  `Allongé sur ce lit de pierre, votre corps se redécouvre. Il se remémore qui vous êtes,
   de la cime de vos cheveux infiniment longs jusqu'à la voute de vos pieds doux et fragiles.
   Vous êtes celle que l'on appelait Empathie, cela vous revient, dernière Naïade de ce temple de l'eau qui fut mis
   en sommeil avant son invasion.`,
@@ -99,7 +99,7 @@ const Intro = ['Intro', [
     onTap: Navigation.skip,
   },
 
-  `Ce dernier, un humain vêtu d'une l'armure légère est le plus grand de la bande.
+  `Ce dernier, un humain vêtu d'une armure légère est le plus grand de la bande.
   Son visage légèrement carré s'habille d'une petite barbe taillée et ses cheveux, bruns et ondulés
   sont d'une propreté rare en ce monde. Encore moins communes sont les lunettes rondes qui trahissent sa classe.
   Il est manifestement l'érudit, vous présumez.`,
@@ -137,7 +137,7 @@ const Intro = ['Intro', [
 
   {
     character: 'Pam',
-    children: `« Ce n'est pas optionel » dit-elle pour agacée.`,
+    children: `« Ce n'est pas optionnel » dit-elle pour agacée.`,
     onTap: ({ goForward }) => goForward(1),
   },
 
@@ -148,7 +148,7 @@ const Intro = ['Intro', [
     onTap: Navigation.skip,
   },
 
-  `Vous enfilez le grossier tissu qu'elle vous a poliement donné.`,
+  `Vous enfilez le grossier tissu qu'elle vous a poliment donné.`,
 
   {
     children: `De quelle nature sont les premiers mots que vous souhaitez leur adresser ?`,
@@ -171,7 +171,7 @@ const Intro = ['Intro', [
 
   {
     character: 'Empathie',
-    children: `Avec une imprésionnant sagesse, vous leur dîtes : 
+    children: `Avec une impressionnant sagesse, vous leur dîtes : 
     « Vous ignorez peut-être tout de ces lieux, ou vous en savez tous les recoins.
     Une chose est sûre, il n'est profitable à aucun d'entre-nous de s'éterniser ici.
     Il me parait inconcevable d'être la seule à m'être réveillez dans ce rafus. 
@@ -181,7 +181,7 @@ const Intro = ['Intro', [
 
   {
     character: 'Empathie',
-    children: `« Vous n'avez aucune honte de venir profanez ce lieu sacré ! »
+    children: `« Vous n'avez aucune honte de venir profaner ce lieu sacré ! »
     lancez-vous abruptement.`,
     onTap: Navigation.skip,
   },
@@ -196,7 +196,7 @@ const Intro = ['Intro', [
     character: 'Empathie',
     children: `« Merci pour les vêtements » vous leur dîtes.
     « Je souhaite collaborer. Tout me parait nouveau et mes sens sont saturés.
-    Aidez-moi et peut-être que je pourrais un jour vous rendre l'appareil... »`,
+    Aidez-moi et peut-être que je pourrais un jour vous rendre la pareille... »`,
     onTap: Navigation.skip,
   },
 
